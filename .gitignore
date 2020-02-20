@@ -1,0 +1,3 @@
+# ignore the pycharm directories
+.idea/
+_pychache_/
