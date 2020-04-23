@@ -8,3 +8,6 @@ def getclusterwithsample(input = None,columnMembers = None,columnCluster = None)
         samples=input[input[columnCluster]==x]
         clustersWithSamples["cluster"+str(x)]=samples
     return clustersWithSamples
+
+def createdataframeclusters(input = None, columnMembers= None, columnCluster = None):
+    return None
