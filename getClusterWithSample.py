@@ -12,16 +12,21 @@ def getclusterwithsample(input = None,columnMembers = None,columnCluster = None)
 def createdataframeclusters(input = None,columnNames=None):
     # First for each cluster create an extra column with "Cluster x "  as info
     dataFrameReturn=[]
-    for y in range(1,input.__len__()+1):
-        for x in input:
-            if columnNames==None:
-                clusterNumber="Cluster "+str(y)
-                dataFrame=x.assign(Cluster=clusterNumber)
-                dataFrameReturn.append(dataFrame)
-            else:
-                x=x.loc[:,columnNames]
-                clusterNumber="Cluster "+str(y)
-                dataFrame=x.assign(Cluster=clusterNumber)
-                dataFrameReturn.append(dataFrame)
+    number=0
+    for x in input:
+        number=number+1
+        if columnNames==None:
+            clusterNumber="Cluster "+str(number)
+            dataFrame=x.assign(Cluster=clusterNumber)
+            dataFrameReturn.append(dataFrame)
+        else:
+             x=x.loc[:,columnNames]
+             clusterNumber="Cluster "+str(number)
+             dataFrame=x.assign(Cluster=clusterNumber)
+             dataFrameReturn.append(dataFrame)
     dataFrameCluster=pd.concat(dataFrameReturn,axis=0)
     return dataFrameCluster
+
+def meltdataframetolongformat(input=None,idVars=None,valueVars=None,varName=None):
+    meltedFormat=pd.melt(input,id_vars=idVars,value_vars=valueVars,var_name=varName)
+    return meltedFormat
